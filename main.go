@@ -18,8 +18,8 @@ func main() {
 	defer database.Connect.Close(ctx)
 
 	subRepo := postgres.NewSubscriptionRepository(database)
-	subHandler := service.NewSubscription(subRepo)
+	subService := service.NewSubscriptionService(subRepo)
 
-	server := http.NewServer(*subHandler)
+	server := http.NewServer(subService)
 	server.Run()
 }
