@@ -6,16 +6,18 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	"go.uber.org/zap"
 )
 
 type Server struct {
 	router *gin.Engine
+	Logger *zap.Logger
 }
 
-func NewServer(subService *service.SubscriptionService) *Server {
+func NewServer(subService *service.SubscriptionService, logger *zap.Logger) *Server {
 	router := gin.Default()
 
-	subHandler := handler.NewSubscriptionHandler(subService)
+	subHandler := handler.NewSubscriptionHandler(subService, logger)
 
 	// Subscriptions handlers
 	router.GET("/subscriptions", subHandler.ListSubscription)
@@ -29,6 +31,7 @@ func NewServer(subService *service.SubscriptionService) *Server {
 
 	return &Server{
 		router: router,
+		Logger: logger,
 	}
 }
 

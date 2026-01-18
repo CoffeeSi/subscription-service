@@ -26,6 +26,8 @@ require (
 	github.com/swaggo/gin-swagger v1.6.1 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
+	go.uber.org/multierr v1.11.0 // indirect
+	go.uber.org/zap v1.27.1 // indirect
 )
 
 require (
