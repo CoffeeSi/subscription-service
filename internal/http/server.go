@@ -4,6 +4,8 @@ import (
 	"github.com/CoffeeSi/subscription-service/internal/http/handler"
 	"github.com/CoffeeSi/subscription-service/internal/service"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
 )
 
@@ -24,6 +26,8 @@ func NewServer(subService *service.SubscriptionService, logger *zap.Logger) *Ser
 	router.DELETE("/subscriptions/:id", subHandler.DeleteSubscriptionsByID)
 
 	router.GET("/subscriptions/totalprice", subHandler.GetTotalPrice)
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	return &Server{
 		router: router,
