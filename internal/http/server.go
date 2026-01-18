@@ -23,6 +23,7 @@ func NewServer(subService *service.SubscriptionService, logger *zap.Logger) *Ser
 	router.GET("/subscriptions", subHandler.ListSubscription)
 	router.POST("/subscriptions", subHandler.CreateSubscription)
 	router.GET("/subscriptions/:id", subHandler.GetSubscriptionsByID)
+	router.PUT("/subscriptions/:id/:service_name", subHandler.UpdateSubscriptionByID)
 	router.DELETE("/subscriptions/:id", subHandler.DeleteSubscriptionsByID)
 
 	router.GET("/subscriptions/totalprice", subHandler.GetTotalPrice)

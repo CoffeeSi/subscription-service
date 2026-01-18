@@ -45,6 +45,13 @@ paths:
       consumes:
       - application/json
       description: Create a new subscription with the provided details
+      parameters:
+      - description: Subscription to create
+        in: body
+        name: subscription
+        required: true
+        schema:
+          $ref: '#/definitions/model.Subscription'
       produces:
       - application/json
       responses:
@@ -134,6 +141,46 @@ paths:
       summary: Get subscriptions by user ID
       tags:
       - subscriptions
+    put:
+      consumes:
+      - application/json
+      description: Update subscriptions for a specific user by their ID
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Subscription data to update
+        in: body
+        name: subscription
+        required: true
+        schema:
+          $ref: '#/definitions/model.Subscription'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Success update message
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal server error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Update subscriptions by user ID
+      tags:
+      - subscriptions
   /subscriptions/totalprice:
     get:
       description: Calculate the total price of subscriptions for a user within a
@@ -165,6 +212,7 @@ paths:
           description: Total price of subscriptions
           schema:
             additionalProperties:
+              format: int64
               type: integer
             type: object
         "400":
