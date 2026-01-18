@@ -5,6 +5,11 @@ go 1.25.5
 require github.com/gin-gonic/gin v1.11.0
 
 require (
+	go.uber.org/multierr v1.11.0 // indirect
+	go.uber.org/zap v1.27.1 // indirect
+)
+
+require (
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
 	github.com/joho/godotenv v1.5.1
